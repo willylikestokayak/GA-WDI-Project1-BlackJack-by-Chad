@@ -10,15 +10,16 @@
 		<button id="startGame">Start New Game</button>
 	</header>
 	<div class="gameBoard">
-		<div class="cardDisplay">
+		<div id="bjTable"></div>
 			<form>
 				<input type="text" name="Dealer Count">Dealer Count</input>
 				<input type="text" name="Player Count">Player Count</input><br>
-				<button type="button">Hit Me!</button>
-				<button type="stand">Stand</button>
-				<button type="deal">Deal 'em up</button> 
+				<button type="button" class="button" id="aceValue">Change Ace to Value of 1</button>
+				<button type="button" class="button" id="hit">Hit Me!</button>
+				<button type="button" class="button">Stand</button>
+				<button type="button" class="button">Deal 'em up</button> 
 			</form>
-		</div>
+			<ul id="cardslist"></ul>
 	</div>
 
 
