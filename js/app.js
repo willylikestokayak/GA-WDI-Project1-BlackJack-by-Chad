@@ -7,6 +7,8 @@ var dealerCards = $('#dealerCards');
 var playerCards = $('#playerCards');
 var dealerArray = [];
 var playerArray = [];
+var playerCountOutput = $('#playerCountOutput');
+var playerHandTotal = 0;
 // var faceCardValues = {
 // 	"JACK": 	10,
 // 	"QUEEN": 	10,
@@ -48,20 +50,27 @@ $(document).ready(function(){
 		// get players hand
 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=2').done(function(data) {
 			$.each(data.cards, function(i, card) {
+				// debugger;
 				playerCards.append("<img src='" + card.image + "'>");
-					if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
-						card.value = 10;
-						playerArray.push(card.value);
-					} else if (card.value === "ACE") {
-						card.value = 11;
-						playerArray.push(card.value);
-					} else {
+				if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
+					card.value = 10;
+					playerArray.push(card.value);
+				} else if (card.value === "ACE") {
+					card.value = 11;
+					playerArray.push(card.value);
+				} else {
 					playerArray.push(parseInt(card.value));
-				}
+				}	
+			});
+			$.each(playerArray, function(j, value) {
+				playerHandTotal += playerArray[j];
+				playerHandTotal.textContent(playerCountOutput);
 			});
 		});
 	});	
 });
+
+
 
 $(document).ready(function(){
 	$(hit).click(function(){ 
