@@ -7,13 +7,13 @@ var dealerCards = $('#dealerCards');
 var playerCards = $('#playerCards');
 var dealerArray = [];
 var playerArray = [];
-var faceCardValues = {
-	"JACK": 	10,
-	"QUEEN": 	10,
-	"KING": 	10,
-	"ACE": 		11,
-	"ACE-LOW": 	1, 
-};
+// var faceCardValues = {
+// 	"JACK": 	10,
+// 	"QUEEN": 	10,
+// 	"KING": 	10,
+// 	"ACE": 		11,
+// 	"ACE-LOW": 	1
+// };
 
 $(startPlay).click(function(){ 
 	console.log("I am a click event in the start play function");
@@ -33,15 +33,31 @@ $(document).ready(function(){
 			$.each(data.cards, function(i, card) {
 				//console.log("Suit=" + card.suit + ", Rank=" + card.value);
 				dealerCards.append("<img src='" + card.image + "' >");
-					dealerArray.push(parseInt(card.value));
-					console.log("where I'm trying to push cards to array ",dealerArray);
-			});
+					if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK" ) {
+						card.value = 10;
+						dealerArray.push(card.value);
+					} else if (card.value === "ACE") {
+						 card.value = 11;
+						 dealerArray.push(card.value);
+						 //console.log("New face value dealer array ",dealerArray);
+					} else {
+						dealerArray.push(parseInt(card.value));
+					}
+				});
 		});
 		// get players hand
 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=2').done(function(data) {
 			$.each(data.cards, function(i, card) {
-				//console.log("Suit=" + card.suit + ", Rank+" + card.value);
 				playerCards.append("<img src='" + card.image + "'>");
+					if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
+						card.value = 10;
+						playerArray.push(card.value);
+					} else if (card.value === "ACE") {
+						card.value = 11;
+						playerArray.push(card.value);
+					} else {
+					playerArray.push(parseInt(card.value));
+				}
 			});
 		});
 	});	
@@ -53,6 +69,16 @@ $(document).ready(function(){
 			$.each(data.cards, function(i, card) {
 				console.log("hit button test");
 				playerCards.append("<img src='" + card.image + "'>");
+					if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
+						card.value = 10;
+						playerArray.push(card.value);
+					} else if (card.value === "ACE") {
+						card.value = 11;
+						playerArray.push(card.value);
+					} else {
+						playerArray.push(parseInt(card.value));
+					}
+					console.log("new player array with vaules, " + playerArray);
 			});
 		});
 	});
