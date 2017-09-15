@@ -9,7 +9,9 @@ var playerCards = $('#playerCards');
 var dealerArray = [];
 var playerArray = [];
 var playerCountOutput = $('#playerCountOutput');
+var dealerCountOutput = $('#dealerCountOutput');
 var playerHandTotal = 0;
+var dealerHandTotal = 0;
 var cards;
 var shuffleIndicator = 0;
 
@@ -29,25 +31,25 @@ $(deal).click(function(){
 				if(cards[i].value === "KING" || cards[i].value === "QUEEN" || cards[i].value === "JACK") {
 					cards[i].value = 10;
 					playerArray.push(cards[i].value);
-					console.log("I'm in the FACE CARD array if statement, " + playerArray);
 				} else if (cards[i].value === "ACE") {
 					cards[i].value = 11;
 					playerArray.push(cards[i].value);
-					console.log("I'm in the ACE array if statement, " + playerArray);
 				} else {
 					playerArray.push(parseInt(cards[i].value));
-					console.log("I'm in the NUMBERED CARD array if statement, " + playerArray);
 				}
 			} else {
 				dealerCards.append("<img src='" + cards[i].image + "' >");
 				if(cards[i].value === "KING" || cards[i].value === "QUEEN" || cards[i].value === "JACK" ) {
 					cards[i].value = 10;
 					dealerArray.push(cards[i].value);
+					//console.log("I'm in the FACE CARD array if statement, " + dealerArray);
 				} else if (cards[i].value === "ACE") {
 					 cards[i].value = 11;
 					 dealerArray.push(cards[i].value);
+					 //console.log("I'm in the ACE array if statement, " + dealerArray);
 				} else {
 					dealerArray.push(parseInt(cards[i].value));
+					//console.log("I'm in the PLAIN CARD array if statement, " + dealerArray);
 				}
 			};	
 		}
@@ -55,7 +57,13 @@ $(deal).click(function(){
 			playerHandTotal =+ playerArray[j] + playerHandTotal;
 		});
 			playerCountOutput.val(playerHandTotal);
-			console.log('this is text box data, should be null ' + playerCountOutput);
+		//console.log("I'm above the dealer array " + dealerArray);
+
+		$.each(dealerArray, function(n, value){
+			dealerHandTotal =+ dealerArray[n] + dealerHandTotal;
+		});
+			dealerCountOutput.val(dealerHandTotal);
+		console.log("below and final output....what am I doing " + dealerArray);
 	});
 		// $.each(playerArray, function(j, value){
 		// 	playerHandTotal =+ playerArray[j] + playerHandTotal;
@@ -94,8 +102,6 @@ $(hit).click(function(){
 	});
 });
 
-
-// $(document).ready(function() {
 // 	$(stand).click(function() {
 // 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=1').done(function(data){
 // 			dealerCards.append("<img src='" + card.image + "'>");
