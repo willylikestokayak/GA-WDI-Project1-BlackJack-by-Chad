@@ -24,7 +24,6 @@ $(startPlay).click(function(){
 $(deal).click(function(){
 	$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=52').done(function(data) {
 		cards = data.cards;
-		console.log(data);
 		for(let i = 0; i<4; i++){
 			if(i % 2 === 0){
 				playerCards.append("<img src='" + cards[i].image + "'>");
@@ -42,65 +41,51 @@ $(deal).click(function(){
 				if(cards[i].value === "KING" || cards[i].value === "QUEEN" || cards[i].value === "JACK" ) {
 					cards[i].value = 10;
 					dealerArray.push(cards[i].value);
-					//console.log("I'm in the FACE CARD array if statement, " + dealerArray);
 				} else if (cards[i].value === "ACE") {
 					 cards[i].value = 11;
 					 dealerArray.push(cards[i].value);
-					 //console.log("I'm in the ACE array if statement, " + dealerArray);
 				} else {
 					dealerArray.push(parseInt(cards[i].value));
-					//console.log("I'm in the PLAIN CARD array if statement, " + dealerArray);
 				}
 			};	
 		}
-		$.each(playerArray, function(j, value){
-			playerHandTotal =+ playerArray[j] + playerHandTotal;
-		});
-			playerCountOutput.val(playerHandTotal);
-		//console.log("I'm above the dealer array " + dealerArray);
-
-		$.each(dealerArray, function(n, value){
-			dealerHandTotal =+ dealerArray[n] + dealerHandTotal;
-		});
-			dealerCountOutput.val(dealerHandTotal);
-		console.log("below and final output....what am I doing " + dealerArray);
-	});
-		// $.each(playerArray, function(j, value){
-		// 	playerHandTotal =+ playerArray[j] + playerHandTotal;
-		// });
-		// 	playerCountOutput.val(playerHandTotal);
-	});
-		//console.log('this should be player hand total',playerHandTotal);
-		//console.log('this is text box data below the for each loop ' + playerCountOutput);
-
-
-///this hit function just needs to append the next image from your global cards object and add the value to the player hand value
-$(hit).click(function(){ 
-	// debugger;
-	console.log(playerHandTotal);
-	playerArray = [];
-	playerArray.push(playerHandTotal);
-	//need to empty either the array or text field and recalculate totals
-	console.log("I hope this value is null... " + playerCountOutput);
-		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=1').done(function(data) {
-			$.each(data.cards, function(i, card) {
-				playerCards.append("<img src='" + card.image + "'>");
-					if(card.value === "KING" || card.value === "QUEEN" || card.value === "JACK") {
-						card.value = 10;
-						playerArray.push(card.value);
-					} else if (card.value === "ACE") {
-						card.value = 11;
-						playerArray.push(card.value);
-					} else {
-						playerArray.push(parseInt(card.value));
-					}
+			$.each(playerArray, function(j, value){
+				playerHandTotal =+ playerArray[j] + playerHandTotal;
 			});
-		$.each(playerArray, function(j, value){
-			playerHandTotal += playerArray;
+				playerCountOutput.val(playerHandTotal);
+
+			$.each(dealerArray, function(n, value){
+				dealerHandTotal =+ dealerArray[n] + dealerHandTotal;
+			});
+				dealerCountOutput.val(dealerHandTotal);
 		});
+	});
+
+$(hit).click(function(){ 
+	//cards = data.cards;
+		for(let i = 0; i<1; i++){
+			playerCards.append("<img src='" + cards[i].image + "'>");
+				if(cards[i].value === "KING" || cards[i].value === "QUEEN" || cards[i].value === "JACK") {
+					cards[i].value = 10;
+					playerArray.push(cards[i].value);
+					console.log("I am in the FACE CARD array, " + playerArray);
+				} else if (cards[i].value === "ACE") {
+					cards[i].value = 11;
+					playerArray.push(cards[i].value);
+					console.log("I am in the ACE array, " + playerArray);
+				} else {
+					playerArray.push(parseInt(cards[i].value));
+					console.log("I am in the NUMBERED CARD array, " + playerArray);
+				}
+		};
+		//not sure this for each loop is needed
+		// $.each(playerArray, function(n, value){
+		// 	playerHandTotal += playerArray[n] + playerHandTotal;
+		// });
+			//playerHandTotal += playerArray + playerHandTotal;
 			playerCountOutput.val(playerHandTotal);
 	});
-});
+
 
 // 	$(stand).click(function() {
 // 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=1').done(function(data){
