@@ -65,45 +65,27 @@ $(deal).click(function(){
 			currentCardIndex = 4;
 		});
 	});
-	// console.log("cards array above hit button, " + cards.value);
-
-	// console.log("Who am I? playerArray " + playerArray + " or am I playerHandTotal? " + playerHandTotal);
-	// console.log(playerArray);  -- playerArray empty here
-
-// $(aceValue).click(function(){
-// 	console.log("is the aceValue button enabled?")
-// });
 
 $(hit).click(function(){
-	console.log(cards[thingCount].value);
-	////this is where you wi. ll put all the logic to add card to hand and add card value to player hand value
+	playerCards.append("<img src='" + cards[currentCardIndex].image + "'>");
+		if(cards[currentCardIndex].value === "KING" || cards[currentCardIndex].value === "QUEEN" || cards[currentCardIndex].value === "JACK") {
+			cards[currentCardIndex].value = 10;
+			playerArray.push(cards[currentCardIndex].value);
+		} else if (cards[currentCardIndex].value === "ACE") {
+			cards[currentCardIndex].value = 11;
+			playerArray.push(cards[currentCardIndex].value);
+		} else {
+			playerArray.push(parseInt(cards[currentCardIndex].value));
+		}
+		currentCardIndex++;
 
-	thingCount++;
+		playerHandTotal = 0;
+		for (var i = 0; i < playerArray.length; i++) {
+			playerHandTotal += playerArray[i];
+		}
+		playerCountOutput.val(playerHandTotal);
+		console.log(playerHandTotal); 
 
-	// console.log("the cards array " + cards[4].value);
-	//need to call a card from cards variable somehow
-	//for(var i = 0; i < cards[0]; i++){
-		// playerCards.append("<img src='" + cards[i].image + "'>");
-		// 	if(cards[i].value === "KING" || cards[i].value === "QUEEN" || cards[i].value === "JACK") {
-		// 		cards[i].value = 10;
-		// 		playerArray.push(cards[i].value);
-		// 		console.log("Who am I? playerArray " + playerArray + " or am I playerHandTotal? " + playerHandTotal);
-		// 		console.log(playerArray);
-		// 	} else if (cards[i].value === "ACE") {
-		// 		cards[i].value = 11;
-		// 		playerArray.push(cards[i].value);
-		// 		//console.log("I am in the ACE array, " + playerArray);
-		// 	} else {
-		// 		playerArray.push(parseInt(cards[i].value));
-		// 		//console.log("I am in the NUMBERED CARD array, " + playerArray);
-		// 	}
-	//};
-		//not sure this for each loop is needed
-		// $.each(playerArray, function(n, value){
-		// 	playerHandTotal += playerArray[n] + playerHandTotal;
-		// });
-			//playerHandTotal += playerArray + playerHandTotal;
-			playerCountOutput.val(playerHandTotal);
 	});
 
 
