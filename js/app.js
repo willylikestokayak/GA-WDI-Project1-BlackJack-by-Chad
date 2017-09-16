@@ -15,7 +15,26 @@ var dealerHandTotal = 0;
 var cards = [];
 var currentCardIndex = 0;
 var shuffleIndicator = 0;
+var clearPlayerCard = $('#playerCardImages');
 //var aceValue = $('#aceValue').prop('disabled');
+
+var clearBoard = function () {
+	$('img').remove('img', '');
+	dealerHandTotal = 0;
+	playerHandTotal = 0;
+	playerArray = [];
+	dealerArray = [];
+
+	$.each($('.countText'), function () {
+    	$(this).val("");
+    console.log(dealerHandTotal);
+});
+
+	//clearPlayerCard.parentNode.removeChild(clearPlayerCard);
+
+	// var image_x = document.getElementById('image_X');
+	// image_x.parentNode.removeChild(image_x);
+}
 
 $(startPlay).click(function(){ 
 	$.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6').done(function(data) {
@@ -29,7 +48,7 @@ $(deal).click(function(){
 		cards = data.cards;
 		for(let i = 0; i<4; i++) {
 			if(i % 2 === 0){
-				playerCards.append("<img src='" + cards[i].image + "'>");
+				playerCards.append("<img id='playerCardImages' src='" + cards[i].image + "' >");
 				if(cards[i].value === "KING" || cards[i].value === "QUEEN" || cards[i].value === "JACK") {
 					cards[i].value = 10;
 					playerArray.push(cards[i].value);
@@ -89,7 +108,12 @@ $(hit).click(function(){
 	});
 
 
-// 	$(stand).click(function() {
+	$(stand).click(function() {
+	console.log('is the stand button working');
+		clearBoard();
+	console.log("what is in the playerArray? " + playerArray);
+	console.log('player array value ' + playerArray.value);
+	});
 // 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=1').done(function(data){
 // 			dealerCards.append("<img src='" + card.image + "'>");
 // 			$.each(data.cards, function(i, card) {
@@ -97,5 +121,5 @@ $(hit).click(function(){
 // 			})
 // 		})
 // 	})
-// })
+// 
 
