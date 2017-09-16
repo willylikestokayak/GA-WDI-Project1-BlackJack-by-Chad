@@ -16,7 +16,6 @@ var cards = [];
 var currentCardIndex = 0;
 var shuffleIndicator = 0;
 var clearPlayerCard = $('#playerCardImages');
-//var aceValue = $('#aceValue').prop('disabled');
 
 var clearBoard = function () {
 	$('img').remove('img', '');
@@ -27,20 +26,26 @@ var clearBoard = function () {
 
 	$.each($('.countText'), function () {
     	$(this).val("");
-    console.log(dealerHandTotal);
-});
-
-	//clearPlayerCard.parentNode.removeChild(clearPlayerCard);
-
-	// var image_x = document.getElementById('image_X');
-	// image_x.parentNode.removeChild(image_x);
+	});
 }
+
+var declareWinner = function (){
+	switch (true) {
+		case dealerHandTotal > playerHandTotal:
+			console.log("The house wins");
+		break;
+		case dealerHandTotal < playerHandTotal:
+			console.log("You WON!");
+		case dealerHandTotal === playerHandTotal:
+			console.log("Push");
+		break;
+	}
+};
 
 $(startPlay).click(function(){ 
 	$.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6').done(function(data) {
 		localStorage.deckId = data.deck_id;
 	});
-	//aceValue.prop('disabled') = false;
 });
  
 $(deal).click(function(){
@@ -83,6 +88,7 @@ $(deal).click(function(){
 			dealerCountOutput.val(dealerHandTotal);
 			currentCardIndex = 4;
 		});
+	
 	});
 
 $(hit).click(function(){
@@ -102,24 +108,12 @@ $(hit).click(function(){
 		for (var i = 0; i < playerArray.length; i++) {
 			playerHandTotal += playerArray[i];
 		}
-		playerCountOutput.val(playerHandTotal);
-		console.log(playerHandTotal); 
+		playerCountOutput.val(playerHandTotal); 
 
 	});
 
 
 	$(stand).click(function() {
-	console.log('is the stand button working');
-		clearBoard();
-	console.log("what is in the playerArray? " + playerArray);
-	console.log('player array value ' + playerArray.value);
-	});
-// 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=1').done(function(data){
-// 			dealerCards.append("<img src='" + card.image + "'>");
-// 			$.each(data.cards, function(i, card) {
-// 				dealerCards.append
-// 			})
-// 		})
-// 	})
-// 
+		declareWinner();
+});
 
