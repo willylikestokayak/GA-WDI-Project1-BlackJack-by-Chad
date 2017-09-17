@@ -41,21 +41,6 @@ var checkForBlackJack = function () {
 	}
 };
 
-var declareWinner = function () {
-	switch (true) {
-		case dealerHandTotal > playerHandTotal:
-			console.log("The house wins");
-		break;
-		case dealerHandTotal < playerHandTotal:
-			console.log("You WON!");
-		case dealerHandTotal === playerHandTotal:
-			console.log("Push");
-		break;
-		default:
-	}
-	//clearBoard();
-};
-
 var checkForBust = function () {
 	switch (true) {
 		case dealerHandTotal >= 22:
@@ -69,6 +54,22 @@ var checkForBust = function () {
 		default:
 	}
 }
+
+var declareWinner = function () {
+	checkForBust();
+	switch (true) {
+		case dealerHandTotal > playerHandTotal && dealerHandTotal <= 21:
+			console.log("The house wins");
+		break;
+		case dealerHandTotal < playerHandTotal && playerHandTotal <= 21:
+			console.log("You WON!");
+		case dealerHandTotal === playerHandTotal:
+			console.log("Push");
+		break;
+		default:
+	}
+	//clearBoard();
+};
 
 $(startPlay).click(function(){ 
 	$.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6').done(function(data) {
@@ -145,33 +146,34 @@ $(hit).click(function(){
 
 	$(stand).click(function() {
 		if(dealerHandTotal <= 16){
-			dealerCards.append("<img src='" + cards[currentCardIndex].image + "'>");
-				if(cards[currentCardIndex].value === "KING" || cards[currentCardIndex].value === "QUEEN" || cards[currentCardIndex].value === "JACK") {
-					cards[currentCardIndex].value = 10;
-					dealerArray.push(cards[currentCardIndex].value);
-					checkForBust();
-					console.log(dealerHandTotal);
-				} else if (cards[currentCardIndex].value === "ACE") {
-					cards[currentCardIndex].value = 1;
-					dealerArray.push(cards[currentCardIndex].value);
-					checkForBust();
-					console.log(dealerHandTotal);
-				} else {
-					dealerArray.push(parseInt(cards[currentCardIndex].value));
-					checkForBust();
-					console.log(dealerHandTotal);
-				}	
-			} else {
-				declareWinner();
+			for(var j = 0; j < 1; j++) {
+				dealerCards.append("<img src='" + cards[currentCardIndex].image + "'>");
+					if(cards[currentCardIndex].value === "KING" || cards[currentCardIndex].value === "QUEEN" || cards[currentCardIndex].value === "JACK") {
+						cards[currentCardIndex].value = 10;
+						dealerArray.push(cards[currentCardIndex].value);
+						checkForBust();
+						console.log(dealerHandTotal);
+					} else if (cards[currentCardIndex].value === "ACE") {
+						cards[currentCardIndex].value = 1;
+						dealerArray.push(cards[currentCardIndex].value);
+						checkForBust();
+						console.log(dealerHandTotal);
+					} else if (dealerArray.push(parseInt(cards[currentCardIndex].value))) {
+						checkForBust();
+						console.log(dealerHandTotal);	
+					} else {
+						declareWinner();
+				}
 			}
-			
+		}
+
 		dealerHandTotal = 0;
-		for (var i = 0; i < dealerArray.length; i++) {
-			dealerHandTotal += dealerArray[i];
+			for (var i = 0; i < dealerArray.length; i++) {
+				dealerHandTotal += dealerArray[i];
 		}
 			dealerCountOutput.val(dealerHandTotal); 
-			checkForBust();
-			declareWinner();
-		});
+				checkForBust();
+				declareWinner();
+});
 
 
