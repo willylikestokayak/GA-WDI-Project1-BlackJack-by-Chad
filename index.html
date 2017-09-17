@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Farsan|Shrikhand" rel="stylesheet">
 <title>BlackJack</title>	
 </head>
 <body>
 	<header>
 		<h1>Play BlackJack</h1>
-		<button type="button" class="button" id="startGame">Start New Game</button>
-		<button type="button" class="button" id="deal">Deal 'em up</button>
+		<button type="button" class="topButton" id="startGame">Start New Game</button>
+		<button type="button" class="topButton" id="deal">Deal 'em up</button>
 	</header>
-	<!-- <div class="gameBoard"> -->
-	<div class='container-fluid' id=gameBoard>
-		<div class='row'>
-			<div class="col-sm-3 col-md-6" id="dealerCards">
-				<p>Dealer Hand</p>
-				<input type="text" id="dealerCountOutput" class="countText" name="Dealer Count" value="">Dealer Count</input>
-			</div>
-			<div class="col-sm-3 col-md-6" id="playerCards">
-				<p>Player Hand</p>
-				<input type="text" id="playerCountOutput" class="countText" name="Player Count" value="">Player Count</input><br>
-				<button type="button" class="button" id="aceValue">Take Soft Ace</button>
-				<button type="button" class="button playerButtons" id="hit">Hit Me!</button>
-				<button type="button" class="button playerButtons" id="stand">Stand</button> 
+	<div class="gameBoard">
+		<div class='container-fluid' id=gameBoard>
+			<div class='row'>
+				<div class="col-sm-3 col-md-6" id="dealerCards">
+					<p>Dealer Hand</p>
+					<input type="text" id="dealerCountOutput" class="countText" name="Dealer Count" value="">Dealer Count</input>
+				</div>
+				<div class="col-sm-3 col-md-6" id="playerCards">
+					<p>Player Hand</p>
+					<input type="text" id="playerCountOutput" class="countText" name="Player Count" value="">Player Count</input><br>
+					<button type="button" class="button playerButtons" id="hit">Hit Me!</button>
+					<button type="button" class="button playerButtons" id="stand">Stand</button> 
 		</div>
-	<!-- </div>	 -->
+	</div>
 			
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

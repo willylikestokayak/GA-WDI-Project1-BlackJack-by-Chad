@@ -78,6 +78,7 @@ $(startPlay).click(function(){
 });
  
 $(deal).click(function(){
+	clearBoard();
 	$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=10').done(function(data) {
 		cards = data.cards;
 		for(let i = 0; i<4; i++) {
