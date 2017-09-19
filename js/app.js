@@ -40,13 +40,13 @@ var clearBoard = function () {
 var checkForBlackJack = function () {
 	switch (true) {
 		case dealerHandTotal === 21 && playerHandTotal === 21:
-			console.log("Double BlackJack, it's a push");
+			alert("Double BlackJack, it's a push");
 		break;
 		case dealerHandTotal === 21:
-			console.log("Dealer won with a blackjack");
+			alert("Dealer won with a blackjack");
 		break;
 		case playerHandTotal === 21:
-			console.log("You won with a blackjack");
+			alert("You won with a blackjack");
 		default:
 	}
 };
@@ -54,12 +54,10 @@ var checkForBlackJack = function () {
 var checkForBust = function () {
 	switch (true) {
 		case dealerHandTotal >= 22:
-			console.log("Dealer busts, you win!");
-			//clearBoard();
+			alert("Dealer busts, you win!");
 		break;
 		case playerHandTotal >= 22:
-			console.log("You busted, house wins...");
-			//clearBoard();
+			alert("You busted, house wins...");
 		break;
 		default:
 	}
@@ -69,12 +67,12 @@ var declareWinner = function () {
 	checkForBust();
 	switch (true) {
 		case dealerHandTotal > playerHandTotal && dealerHandTotal <= 21:
-			console.log("The house wins");
+			alert("The house wins");
 		break;
 		case dealerHandTotal < playerHandTotal && playerHandTotal <= 21:
-			console.log("You WON!");
-		case dealerHandTotal === playerHandTotal:
-			console.log("Push");
+			alert("You WON!");
+		case dealerHandTotal = playerHandTotal:
+			alert("Push");
 		break;
 		default:
 	}
@@ -303,6 +301,7 @@ $(hit).click(function(){
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // $(document).ready(function() {
 // 	$(stand).click(function() {
 // 		$.get('https://deckofcardsapi.com/api/deck/' + localStorage.deckId + '/draw/?count=1').done(function(data){
@@ -315,3 +314,7 @@ $(hit).click(function(){
 // })
 =======
 >>>>>>> master
+=======
+
+
+>>>>>>> c24510f7e35307381bcefea8c4d401090ecfc3c7

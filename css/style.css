@@ -15,16 +15,39 @@ header {
 img {
 	width: 100px;
 	height: 175px;
+	margin-left: auto;
+	margin-right: auto;
 	display: inline-block;
+	top: 20px;
+}
+p {
+	font-family: 'Farsan', cursive;
+	font-size: 30px;
+	text-align: center;
 }
 .topButtons {
 	font-family: 'Farsan', cursive;
 	font-weight: bold;
 	font-size: 20px;
 }
-
 .countText {
 	width: 75px;
+	height: 40px;
+	font-family: 'Farsan', cursive;
+	font-size: 30px;
+	position: relative;
+	top: center;
+}
+.gameBoard{
+	background-color: grey;
+	position: absolute;
+    top: 200px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	margin: auto;
+	width: 600px;
+	height: 600px;
 }
 #gameBoard{
 	margin: auto;
@@ -32,4 +55,19 @@ img {
 	text-align: center;
 	font-family: 'Farsan', cursive;
 	background-color: grey;
+}
+#dealerCards{
+	display: inline-block;
+	margin: auto;
+	width: 400px;
+}
+#playerCards {
+	display: inline-block;
+	margin: auto;
+	width: 400px;
+}
+.playerButtons{
+	position: relative;
+	top: 0;
+	right: 0;
 }

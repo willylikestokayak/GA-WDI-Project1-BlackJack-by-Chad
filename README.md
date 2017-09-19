@@ -10,7 +10,8 @@ First project for the GA WDI program, a working game that needs more work to be 
 	* Add double down, split and insurance options
 ##**Bugs**
 	* Deal function displays values in the text display but values remain stored as 0
-	* Dealer only draws one card after the "stand button" is clicked; this functionality needs to be updated so that the dealer 	draws cards until conditional of dealer's hand is > = 17
+	* Dealer only draws one card after the "stand button" is clicked; this functionality needs to be updated so that the dealer draws cards until conditional of dealer's hand is > = 17
+	* The push alert shows up if player wins
 ##*Acknowledgments*
 	* Thank you to both instructors, Jackson Duhon and Steve Peters for the help in writing code, changing exsiting code to be more efficent and closer match industry standards, debugging and moral support!
 	* Thank you to Deck of Cards API (https://deckofcardsapi.com/) for building an easy to use API for card games.
